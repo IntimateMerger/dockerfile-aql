@@ -20,7 +20,7 @@ class Aerospike(object):
         min_ts = now - (60 * 60 * 24 * days)
         max_ts = 2147483647  # 2038-01-19 12:14:07
 
-        fn = str(uuid.uuid4()) + '.txt'
+        fn = '/tmp/{0}.txt'.format(str(uuid.uuid4()))
 
         cl = aerospike.client({'hosts': [(as_host, 3000)]}).connect()
         q = cl.query(ns_name, set_name)

@@ -15,6 +15,9 @@ logger = logging.getLogger(__name__)
 
 class Aerospike(object):
 
+    def __init__(self):
+        pass
+
     def query(self, as_host, ns_name, set_name, key_name, days, s3_bucket, s3_key):
         now = int(time.time())
         min_ts = now - (60 * 60 * 24 * days)

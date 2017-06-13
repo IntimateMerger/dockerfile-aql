@@ -33,11 +33,11 @@ class Aerospike(object):
         def write_id((key, meta, bins)):
             f.write(bins[key_name] + "\n")
 
-        logger.info('aql: SELECT {0} FROM {1}.{2} WHERE ts > {3}'.format(key_name, ns_name, set_name, min_ts))
-        logger.info('Start Query ...')
+        # logger.info('aql: SELECT {0} FROM {1}.{2} WHERE ts > {3}'.format(key_name, ns_name, set_name, min_ts))
+        # logger.info('Start Query ...')
         with open(fn, "w") as f:
             q.foreach(write_id, {"timeout": 0})
-        logger.info('Finish Query ...')
+        # logger.info('Finish Query ...')
 
         cl.close()
         s3_mv(fn, 's3://{0}/{1}'.format(s3_bucket, s3_key))
@@ -45,7 +45,7 @@ class Aerospike(object):
 
 def s3_mv(fn, key):
     cmd = "aws s3 mv {0} {1}".format(fn, key)
-    logger.info("Run cmd: " + cmd)
+    # logger.info("Run cmd: " + cmd)
     subprocess.check_call(cmd, shell=True)
 
 

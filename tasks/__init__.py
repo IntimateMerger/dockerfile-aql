@@ -1,16 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-# import digdag
-import logging
+import digdag
+# import logging
 import subprocess
 import uuid
 import sys
 import time
 import aerospike
 from aerospike import predicates
-
-logger = logging.getLogger(__name__)
 
 
 class Aerospike(object):
@@ -40,6 +38,7 @@ class Aerospike(object):
         # logger.info('Finish Query ...')
 
         cl.close()
+        digdag.env.store({'file': fn})
         s3_mv(fn, 's3://{0}/{1}'.format(s3_bucket, s3_key))
 
 
